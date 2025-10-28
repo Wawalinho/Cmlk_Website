@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}COLLEGE MARTIN LUTHER KING{% endblock %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+    /* ti bann anlè */
+    .topbar {
+      background-color: #ff0000;
+      color: #ffffff;
+      font-size: 14px;
+      padding: 5px 0;
+    }
+    .topbar a {
+      color: #ffffff;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+    .topbar a:hover {
+      color: #fff;
+    }
+
+    /* bann prensipal */
+    .navbar-custom {
+      background-color: #FF0000;
+    }
+    .navbar-custom .navbar-brand {
+      color: #ffffff;
+      font-size: 36px;
+      font-weight: bold;
+    }
+    .navbar-custom .nav-link {
+      color: #fff;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-left: 20px;
+    }
+    .navbar-custom .nav-link:hover {
+      border-bottom: 2px solid #fff;
+    }
+    
+  </style>
+</head>
+<body>
+
+<!-- Topbar -->
+<div class="topbar d-flex justify-content-between align-items-center px-3">
+  <div>
+    <a href="#">COLLEGE MARTIN LUTHER KING</a>
+  </div>
+
+  <div>
+    <a href="{% url 'nous-joindre' %}">Nous joindre</a>
+    <a href="{% url 'apropos' %}">Mon École</a>
+  </div>
+</div>
+
+<!-- Navbar prensipal -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+  <div class="container">
+    <!-- Logo + nom -->
+    <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
+      <img src="{% static 'img/logo.jpg' %}" 
+          alt="Logo CMLK" 
+          class="me-2 rounded-circle shadow-sm" 
+          style="height: 80px; width: 80px; object-fit: cover;">
+      <span class="fw-bold text-uppercase">CMLK</span>
+    </a>
+
+
+    <!-- Toggler mobil -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" 
+            aria-controls="mainMenu" aria-expanded="false" aria-label="Menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Meni -->
+    <div class="collapse navbar-collapse" id="mainMenu">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link {% if request.path == '/programmes/' %}active{% endif %}" href="{% url 'programmes' %}">Programmes</a></li>
+        <li class="nav-item"><a class="nav-link {% if request.path == '/actualites/' %}active{% endif %}" href="{% url 'actualites' %}">Actualités</a></li>
+        <li class="nav-item"><a class="nav-link {% if request.path == '/apropos/' %}active{% endif %}" href="{% url 'apropos' %}">Notre College</a></li>
+        <li class="nav-item"><a class="nav-link {% if request.path == '/admission/' %}active{% endif %}" href="{% url 'admission' %}">Admission</a></li>
+        <li class="nav-item"><a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="{% url 'contact' %}">Contactez-Nous</a></li>
+      </ul>
+
+      
+    </div>
+  </div>
+</nav>
+
+<!-- Contenu -->
+<main class="container py-4">
+  {% block content %}{% endblock %}
+</main>
+
+<!-- Footer -->
+<footer class="text-white pt-5 pb-3 mt-5" style="background-color:#FF0000;">
+  <div class="container">
+    <div class="row">
+      <!-- Kolòn 1 : Adrès -->
+      <div class="col-md-4 mb-4">
+        <h5>COLLÈGE MARTIN LUTHER KING</h5>
+        <p>
+          Village Mon Repos, Vaudreuil <br>
+          Plaine Du Nord (Haïti) <br>
+          HT 1220
+        </p>
+        <p>
+          Tél : +509 22 22 22 22 <br>
+          Email : info@cmlk.edu
+        </p>
+        <a href="#" class="btn btn-sm btn-light text-danger me-2">
+          <i class="bi bi-geo-alt-fill"></i> Situer
+        </a>
+        <a href="#" class="btn btn-sm btn-light text-danger">
+          <i class="bi bi-telephone-fill"></i> appeler
+        </a>
+      </div>
+
+      <!-- Kolòn 2 : En contact -->
+      <div class="col-md-4 mb-4">
+        <h5>En contact avec le CMLK</h5>
+        <ul class="list-unstyled">
+          <li><i class="bi bi-mortarboard-fill me-2"></i> Nos Anciens</li>
+          <li><i class="bi bi-megaphone-fill me-2"></i> Nos Futurs</li>
+          <li><i class="bi bi-building me-2"></i> Fondation du CMLK</li>
+          <li><i class="bi bi-question-circle-fill me-2"></i> Information scolaire</li>
+        </ul>
+      </div>
+
+      <!-- Kolòn 3 : Réseaux sociaux -->
+      <div class="col-md-4 mb-4">
+        <h5>Suivez-nous</h5>
+        <ul class="list-unstyled">
+          <li><i class="bi bi-youtube me-2"></i> YouTube</li>
+          <li><i class="bi bi-facebook me-2"></i> Facebook</li>
+          <li><i class="bi bi-instagram me-2"></i> Instagram</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Liy anba -->
+    <div class="text-center border-top border-light pt-3">
+      <p class="mb-0">&copy; 2025 Collège Martin Luther King - Tous droits réservés</p>
+    </div>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

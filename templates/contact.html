@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Contact{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <h2 class="mb-4">Contactez-nous</h2>
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="nom" class="form-label">Nom complet</label>
+      <input type="text" class="form-control" id="nom" name="nom" required>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Adresse Email</label>
+      <input type="email" class="form-control" id="email" name="email" required>
+    </div>
+    <div class="mb-3">
+      <label for="message" class="form-label">Message</label>
+      <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Envoyer</button>
+  </form>
+</div>
+{% endblock %}

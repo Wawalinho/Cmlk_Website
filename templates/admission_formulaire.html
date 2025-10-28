@@ -1,0 +1,407 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Formulaire d'admission{% endblock %}
+
+{% block content %}
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} mt-3 text-center fw-semibold">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
+
+<div class="container py-5">
+  <h2 class="text-center mb-4 fw-bold text-danger">Formulaire de demande d’admission</h2>
+
+  <!-- Barre d’étapes -->
+  <div class="steps mb-5 text-center">
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="step active"><div class="circle">1</div><p>Informations</p></div>
+      <div class="line"></div>
+      <div class="step"><div class="circle">2</div><p>Documents</p></div>
+      <div class="line"></div>
+      <div class="step"><div class="circle">3</div><p>Paiement</p></div>
+      <div class="line"></div>
+      <div class="step"><div class="circle">4</div><p>Validation</p></div>
+    </div>
+  </div>
+
+  <form method="post" enctype="multipart/form-data" id="admissionForm" class="shadow p-4 rounded bg-light">
+    {% csrf_token %}
+
+    <!-- Étape 1 : Informations personnelles -->
+<div class="form-step active">
+  <h4 class="mb-3">Étape 1 – Informations personnelles</h4>
+  <div class="row g-3 mb-4">
+    <div class="col-md-6">
+      <label class="form-label">Nom complet</label>
+      {{ form.nom }}
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Date de naissance</label>
+      {{ form.date_naissance }}
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Niveau de formation</label>
+      {{ form.niveau_formation }}
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Niveau d’étude</label>
+      {{ form.niveau_etude }}
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Adresse e-mail</label>
+      {{ form.email }}
+    </div>
+  </div>
+  <div class="text-end">
+    <button type="button" class="btn btn-primary next-step">Suivant</button>
+  </div>
+</div>
+
+
+    <!-- Étape 2 : Documents -->
+<div class="form-step">
+  <h4 class="mb-4 fw-bold text-danger">Étape 2 – Documents requis</h4>
+
+  <div class="row g-4">
+    <!-- Acte de naissance -->
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm p-3">
+        <div class="d-flex align-items-center mb-2">
+          <i class="bi bi-file-earmark-text-fill text-primary fs-4 me-2"></i>
+          <h6 class="mb-0 fw-semibold">Acte de naissance</h6>
+        </div>
+        {{ form.acte_naissance }}
+        <small class="text-muted">Fichier PDF ou image scannée</small>
+      </div>
+    </div>
+
+    <!-- Photo d'identité -->
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm p-3">
+        <div class="d-flex align-items-center mb-2">
+          <i class="bi bi-person-bounding-box text-success fs-4 me-2"></i>
+          <h6 class="mb-0 fw-semibold">Photo d'identité</h6>
+        </div>
+        {{ form.photo_identite }}
+        <small class="text-muted">Format : JPG, PNG ou PDF</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Documents dynamiques selon niveau -->
+  <div id="documents-prescolaire" class="niveau-documents mt-4">
+    <div class="card border-0 shadow-sm p-3">
+      <div class="d-flex align-items-center mb-2">
+        <i class="bi bi-clipboard2-pulse text-info fs-4 me-2"></i>
+        <h6 class="mb-0 fw-semibold">Carte de vaccination</h6>
+      </div>
+      {{ form.carte_vaccination }}
+      <small class="text-muted">Téléversez une copie claire de la carte de vaccination.</small>
+    </div>
+  </div>
+
+  <div id="documents-fondamental" class="niveau-documents mt-4">
+    <div class="card border-0 shadow-sm p-3">
+      <div class="d-flex align-items-center mb-2">
+        <i class="bi bi-book text-warning fs-4 me-2"></i>
+        <h6 class="mb-0 fw-semibold">Carnet du dernier établissement</h6>
+      </div>
+      {{ form.carnet_pdf }}
+      <small class="text-muted">Document PDF ou image scannée du carnet scolaire.</small>
+    </div>
+  </div>
+
+  <div id="documents-secondaire" class="niveau-documents mt-4">
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm p-3">
+          <div class="d-flex align-items-center mb-2">
+            <i class="bi bi-journal-text text-warning fs-4 me-2"></i>
+            <h6 class="mb-0 fw-semibold">Bulletin du dernier établissement</h6>
+          </div>
+          {{ form.bulletin_pdf }}
+          <small class="text-muted">Document PDF ou image scannée du bulletin scolaire.</small>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm p-3">
+          <div class="d-flex align-items-center mb-2">
+            <i class="bi bi-pencil-square text-primary fs-4 me-2"></i>
+            <h6 class="mb-0 fw-semibold">Lettre de motivation</h6>
+          </div>
+          {{ form.lettre_motivation }}
+          <small class="text-muted">Lettre manuscrite ou dactylographiée (PDF).</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Boutons -->
+  <div class="d-flex justify-content-between mt-5">
+    <button type="button" class="btn btn-outline-secondary prev-step px-4">
+      <i class="bi bi-arrow-left me-2"></i> Précédent
+    </button>
+    <button type="button" class="btn btn-danger next-step px-4">
+      Suivant <i class="bi bi-arrow-right ms-2"></i>
+    </button>
+  </div>
+</div>
+
+
+    <!-- Étape 3 : Paiement -->
+<div class="form-step">
+  <h4 class="mb-4 fw-bold text-danger">Étape 3 – Paiement</h4>
+
+  <div class="card border-0 shadow-sm p-4 bg-white">
+    <div class="d-flex align-items-center mb-3">
+      <i class="bi bi-credit-card-2-front-fill text-success fs-3 me-3"></i>
+      <div>
+        <h6 class="fw-semibold mb-1">Reçu de paiement</h6>
+        <p class="text-muted mb-0 small">Veuillez joindre le reçu de votre paiement des frais d’admission.</p>
+      </div>
+    </div>
+    {{ form.paiement_pdf }}
+  </div>
+
+  <div class="alert alert-info mt-4" role="alert">
+    <i class="bi bi-info-circle-fill me-2"></i>
+    Assurez-vous que le reçu est lisible et contient le nom complet de l’élève.
+  </div>
+
+  <div class="d-flex justify-content-between mt-5">
+    <button type="button" class="btn btn-outline-secondary prev-step px-4">
+      <i class="bi bi-arrow-left me-2"></i> Précédent
+    </button>
+    <button type="button" class="btn btn-danger next-step px-4">
+      Suivant <i class="bi bi-arrow-right ms-2"></i>
+    </button>
+  </div>
+</div>
+
+
+    <!-- Étape 4 : Validation -->
+    <div class="form-step">
+      <h4 class="mb-3">Étape 4 – Validation</h4>
+      <p>Vérifiez vos informations et cliquez sur Soumettre pour finaliser la demande.</p>
+      <div class="d-flex justify-content-between">
+        <button type="button" class="btn btn-secondary prev-step">Précédent</button>
+        <button type="submit" class="btn btn-success">Soumettre la demande</button>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+
+
+<style>
+/* --- Styles pour les étapes --- */
+.steps {
+  margin-top: 30px;
+}
+.step {
+  text-align: center;
+  position: relative;
+}
+.circle {
+  width: 45px;
+  height: 45px;
+  background: #ccc;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+.step.active .circle {
+  background-color: #df0b0be4;
+}
+.line {
+  width: 90px;
+  height: 3px;
+  background: #ccc;
+  margin: 0 10px;
+  transition: background-color 0.3s ease;
+}
+.step.active + .line {
+  background: #df0b0be4;
+}
+
+/* --- Formulaires dynamiques --- */
+.form-step {
+  display: none;
+}
+.form-step.active {
+  display: block;
+}
+
+.card input[type="file"] {
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 8px;
+  width: 100%;
+  background-color: #fdfdfd;
+}
+
+.card input[type="file"]:hover {
+  border-color: #dc3545;
+}
+
+small.text-muted {
+  display: block;
+  margin-top: 4px;
+}
+
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const steps = document.querySelectorAll(".form-step");
+  const nextBtns = document.querySelectorAll(".next-step");
+  const prevBtns = document.querySelectorAll(".prev-step");
+  const stepIndicators = document.querySelectorAll(".step");
+
+  const niveauFormationSelect = document.getElementById("id_niveau_formation");
+  const niveauEtudeSelect = document.getElementById("id_niveau_etude");
+
+  const blocPrescolaire = document.getElementById("documents-prescolaire");
+  const blocFondamental = document.getElementById("documents-fondamental");
+  const blocSecondaire = document.getElementById("documents-secondaire");
+
+  //Cache tous les blocs documents
+  function hideAllDocumentBlocks() {
+    [blocPrescolaire, blocFondamental, blocSecondaire].forEach(b => b.style.display = "none");
+  }
+
+  //Affiche les bons documents selon le niveau choisi
+  function updateDocumentsDisplay() {
+    hideAllDocumentBlocks();
+    const niveau = niveauFormationSelect.value;
+
+    if (niveau === "prescolaire") {
+      blocPrescolaire.style.display = "block";
+    } else if (niveau === "fondamental_I" || niveau === "fondamental_II") {
+      blocFondamental.style.display = "block";
+    } else if (niveau === "fondamental_III" || niveau === "secondaire") {
+      blocSecondaire.style.display = "block";
+    }
+  }
+
+  //Initialisation de l’affichage
+  hideAllDocumentBlocks();
+  updateDocumentsDisplay();
+
+  //Événement sur changement de niveau de formation
+  niveauFormationSelect.addEventListener("change", function() {
+    updateNiveauEtude();  // met aussi à jour les niveaux d’étude
+    updateDocumentsDisplay(); // met à jour les documents visibles
+  });
+
+
+
+  // Définir les niveaux d'études selon le niveau de formation
+  const niveauxEtudesOptions = {
+    "prescolaire": [
+      {value: "jardin_I", text: "Jardin I"},
+      {value: "jardin_II", text: "Jardin II"},
+      {value: "jardin_III", text: "Jardin III"}
+    ],
+    "fondamental_I": [
+      {value: "1_AF", text: "1 AF"},
+      {value: "2_AF", text: "2 AF"},
+      {value: "3_AF", text: "3 AF"},
+      {value: "4_AF", text: "4 AF"}
+    ],
+    "fondamental_II": [
+      {value: "5_AF", text: "5 AF"},
+      {value: "6_AF", text: "6 AF"}
+    ],
+    "fondamental_III": [
+      {value: "7_AF", text: "7 AF"},
+      {value: "8_AF", text: "8 AF"},
+      {value: "9_AF", text: "9 AF"}
+    ],
+    "secondaire": [
+      {value: "sec_I", text: "Secondaire I"},
+      {value: "sec_II", text: "Secondaire II"},
+      {value: "sec_III", text: "Secondaire III"},
+      {value: "sec_IV", text: "Secondaire IV"}
+    ]
+  };
+
+  function updateNiveauEtude() {
+    const selectedFormation = niveauFormationSelect.value;
+    // Vider options actuelles
+    niveauEtudeSelect.innerHTML = "";
+    if(selectedFormation in niveauxEtudesOptions) {
+      niveauxEtudesOptions[selectedFormation].forEach(opt => {
+        const option = document.createElement("option");
+        option.value = opt.value;
+        option.text = opt.text;
+        niveauEtudeSelect.appendChild(option);
+      });
+    }
+  }
+
+  // Mise à jour initiale si valeur par défaut
+  updateNiveauEtude();
+
+  // Événement sur changement de niveau de formation
+  niveauFormationSelect.addEventListener("change", updateNiveauEtude);
+
+  // --- Gestion multi-step (reste inchangé) ---
+  let currentStep = 0;
+
+  function updateStep(n) {
+    steps.forEach((step, index) => step.classList.toggle("active", index === n));
+    stepIndicators.forEach((indicator, index) => {
+      indicator.classList.toggle("active", index <= n);
+      const line = indicator.nextElementSibling;
+      if (line && line.classList.contains("line")) {
+        line.style.backgroundColor = index < n ? "#df0b0be4" : "#ccc";
+      }
+    });
+  }
+
+  function validateStep(step) {
+    const requiredFields = step.querySelectorAll("input, select, textarea");
+    for (let field of requiredFields) {
+      if(field.offsetParent !== null && !field.value) {
+        alert("Tous les champs obligatoires doivent être remplis !");
+        field.focus();
+        return false;
+      }
+    }
+    return true;
+  }
+
+  nextBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (validateStep(steps[currentStep])) {
+        if (currentStep < steps.length - 1) {
+          currentStep++;
+          updateStep(currentStep);
+        }
+      }
+    });
+  });
+
+  prevBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (currentStep > 0) {
+        currentStep--;
+        updateStep(currentStep);
+      }
+    });
+  });
+});
+</script>
+
+{% endblock %}

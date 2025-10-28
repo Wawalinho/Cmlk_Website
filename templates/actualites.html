@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Actualités{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <h2 class="text-center mb-4 fw-bold">Actualités du Collège</h2>
+
+  <div class="row g-4">
+    {% for act in actualites %}
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm border-0">   
+          {% if act.image %}
+          <img src="{{ act.image.url }}" class="card-img-top rounded-top" alt="{{ act.titre }}">
+          {% else %}
+          <img src="{% static 'img/default.jpg' %}" class="card-img-top rounded-top" alt="Image non disponible">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title fw-bold">{{ act.titre }}</h5>
+            <p class="card-text text-muted">{{ act.description|truncatewords:30 }}</p>
+          </div>
+          <div class="card-footer bg-white border-0">
+            <small class="text-secondary">Publié le {{ act.date_publication|date:"d F Y" }}</small>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-center text-muted">Aucune actualité disponible pour le moment.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

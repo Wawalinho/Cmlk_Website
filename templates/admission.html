@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Admission{% endblock %}
+
+{% block content %}
+<!-- Hero section -->
+<section class="bg-primary text-white text-center py-5" style="background: url('{% static 'img/medium-shot-people-chatting.jpg' %}') center/cover no-repeat;">
+  <div class="container py-5">
+    <h1 class="display-4 fw-bold">Admission</h1>
+    <p class="lead">Rejoignez notre établissement et faites partie de notre grande famille éducative.</p>
+    <a href="#demande" class="btn btn-light btn-lg mt-3">Demander une admission</a>
+  </div>
+</section>
+
+<!-- Navigation interne -->
+<nav class="bg-light border-bottom py-2 sticky-top">
+  <div class="container d-flex justify-content-center gap-4">
+    <a href="#presentation" class="nav-link">Présentation</a>
+    <a href="#conditions" class="nav-link">Conditions</a>
+    <a href="#etapes" class="nav-link">Étapes</a>
+    <a href="#documents" class="nav-link">Documents requis</a>
+    <a href="#demande" class="nav-link">Demande en ligne</a>
+  </div>
+</nav>
+
+<!-- Présentation -->
+<section id="presentation" class="py-5">
+  <div class="container">
+    <h2 class="mb-3">Présentation</h2>
+    <p>
+      Notre école accueille les élèves de la maternelle (Kindergarten) au secondaire. 
+      Nous mettons un point d'honneur à offrir une formation complète et adaptée 
+      à chaque niveau de développement de l’enfant.
+    </p>
+  </div>
+</section>
+
+<!-- Conditions d’admission -->
+<section id="conditions" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="mb-3">Conditions d’admission</h2>
+    <ul>
+      <li><strong>Kindergarten :</strong> L’enfant doit avoir au moins 3 ans révolus.</li>
+      <li><strong>Fondamental :</strong> Présentation du bulletin scolaire de l’année précédente.</li>
+      <li><strong>Secondaire :</strong> Dossier académique complet et certificat de naissance.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Étapes du processus -->
+<section id="etapes" class="py-5">
+  <div class="container">
+    <h2 class="mb-3">Étapes du processus</h2>
+    <ol>
+      <li>Remplir le formulaire de demande en ligne.</li>
+      <li>Déposer les documents requis au secrétariat.</li>
+      <li>Payer les frais pour l'evaluation du dossier.</li>
+      <li>Passer un entretien d’admission (si nécessaire).</li>
+      <li>Recevoir la lettre d’admission officielle.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- Documents requis -->
+<section id="documents" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="mb-3">Documents requis</h2>
+    <ul>
+      <li>Acte de naissance</li>
+      <li>2 photos d’identité récentes</li>
+      <li>Dernier bulletin scolaire</li>
+      <li>Certificat médical (si demandé)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Demande en ligne -->
+<section id="demande" class="py-5 text-center">
+  <div class="container">
+    <h2 class="mb-3">Demande d’admission en ligne</h2>
+    <p>Remplissez notre formulaire en ligne pour faire une demande d’admission.</p>
+    <a href="{% url 'admission_formulaire' %}" class="btn btn-primary btn-lg">Remplir le formulaire</a>
+  </div>
+</section>
+{% endblock %}

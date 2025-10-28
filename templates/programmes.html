@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Programmes{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <h1 class="text-center mb-4">Nos Programmes</h1>
+  <p class="text-center lead">Découvrez les différents niveaux d’enseignement offerts par le CMLK.</p>
+
+  <div class="accordion" id="programmesAccordion">
+
+    <!-- Kindergarten -->
+    <div class="accordion-item">
+    <h2 class="accordion-header" id="headingKinder">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseKinder" aria-expanded="true" aria-controls="collapseKinder">
+        Kindergarten
+      </button>
+    </h2>
+    <div id="collapseKinder" class="accordion-collapse collapse show" aria-labelledby="headingKinder" data-bs-parent="#programmesAccordion">
+    <div class="accordion-body">
+      <div class="row text-center">
+        <!-- Jardin I -->
+        <div class="col-md-4 mb-3">
+          <img src="{% static 'img/jardinIII.jpg' %}" class="img-fluid rounded shadow" alt="Jardin I">
+          <p class="mt-2">Jardin I</p>
+        </div>
+
+        <!-- Jardin II -->
+        <div class="col-md-4 mb-3">
+          <img src="{% static 'img/jardinII.jpg' %}" class="img-fluid rounded shadow" alt="Jardin II">
+          <p class="mt-2">Jardin II</p>
+        </div>
+
+
+        <!-- Jardin III -->
+        <div class="col-md-4 mb-3">
+          <img src="{% static 'img/jardinI.jpg' %}" class="img-fluid rounded shadow" alt="Jardin III">
+          <p class="mt-2">Jardin III</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+
+    <!-- Fondamental I -->
+     
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingF1">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseF1" aria-expanded="false" aria-controls="collapseF1">
+          Fondamental I
+        </button>
+      </h2>
+      <div id="collapseF1" class="accordion-collapse collapse" aria-labelledby="headingF1" data-bs-parent="#programmesAccordion">
+        <div class="accordion-body">
+      <div class="row text-center">
+        <!-- 1 AF-->
+        <div class="col-md-4 mb-3">
+          <img src="{% static 'img/opened-notebook-near-pencils-paper-clips.jpg' %}" class="img-fluid rounded shadow" alt="Jardin I">
+          <p class="mt-2">1 AF</p>
+        </div>
+
+        <!-- 2 AF -->
+        <div class="col-md-4 mb-3">
+          <img src="{% static 'img/empty-blackboard.jpg' %}" class="img-fluid rounded shadow" alt="Jardin II">
+          <p class="mt-2">2 AF</p>
+        </div>
+
+
+        <!-- 3 AF-->
+        <div class="col-md-4 mb-3">
+          <img src="{% static 'img/notebook-colorful-pencils-with-blackboard-background.jpg' %}" class="img-fluid rounded shadow" alt="Jardin III">
+          <p class="mt-2">3 AF</p>
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fondamental II -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingF2">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseF2" aria-expanded="false" aria-controls="collapseF2">
+          Fondamental II
+        </button>
+      </h2>
+      <div id="collapseF2" class="accordion-collapse collapse" aria-labelledby="headingF2" data-bs-parent="#programmesAccordion">
+        <div class="accordion-body">
+      <div class="row text-center">
+        <!-- 1 AF-->
+        <div class="col-md-4 mb-3">
+          <img src="{% static 'img/group-african-kids-paying-attention-class.jpg' %}" class="img-fluid rounded shadow" alt="Jardin I">
+          <p class="mt-2">4 AF</p>
+        </div>
+
+        <!-- 2 AF -->
+        <div class="col-md-4 mb-3">
+          <img src="{% static 'img/group-african-kids-classroom.jpg' %}" class="img-fluid rounded shadow" alt="Jardin II">
+          <p class="mt-2">5 AF</p>
+        </div>
+
+
+        <!-- 3 AF-->
+        <div class="col-md-4 mb-3">
+          <img src="{% static 'img/3d-render-globe-abstract.jpg' %}" class="img-fluid rounded shadow" alt="Jardin III">
+          <p class="mt-2">6 AF</p>
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fondamental III -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingF3">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseF3" aria-expanded="false" aria-controls="collapseF3">
+          Fondamental III
+        </button>
+      </h2>
+      <div id="collapseF3" class="accordion-collapse collapse" aria-labelledby="headingF3" data-bs-parent="#programmesAccordion">
+        <div class="accordion-body">
+      <div class="row text-center">
+        <!-- 1 AF-->
+        <div class="col-md-4 mb-3">
+          <img src="{% static 'img/black-couple-managing-their-self-employed-business-finances-taxes.jpg' %}" class="img-fluid rounded shadow" alt="Jardin I">
+          <p class="mt-2">7 AF</p>
+        </div>
+
+        <!-- 2 AF -->
+        <div class="col-md-4 mb-3">
+          <img src="{% static 'img/2423223.jpg' %}" class="img-fluid rounded shadow" alt="Jardin II">
+          <p class="mt-2">8 AF</p>
+        </div>
+
+
+        <!-- 3 AF-->
+        <div class="col-md-4 mb-3">
+          <img src="{% static 'img/3620200.jpg' %}" class="img-fluid rounded shadow" alt="Jardin III">
+          <p class="mt-2">9 AF</p>
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Secondaire -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingSec">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSec" aria-expanded="false" aria-controls="collapseSec">
+      Secondaire
+    </button>
+  </h2>
+  <div id="collapseSec" class="accordion-collapse collapse" aria-labelledby="headingSec" data-bs-parent="#programmesAccordion">
+    <div class="accordion-body">
+      <div class="row text-center">
+        <!-- Secondaire 1 -->
+        <div class="col-md-3 mb-3">
+          <img src="{% static 'img/medical-doctor-girl-working-with-microscope-young-female-scientist-doing-vaccine-research.jpg' %}" class="img-fluid rounded shadow" alt="Secondaire 1">
+          <p class="mt-2">Secondaire 1</p>
+        </div>
+
+        <!-- Secondaire 2 -->
+        <div class="col-md-3 mb-3">
+          <img src="{% static 'img/medical-doctor-girl-working-with-microscope-young-female-scientist-doing-vaccine-research.jpg' %}" class="img-fluid rounded shadow" alt="Secondaire 2">
+          <p class="mt-2">Secondaire 2</p>
+        </div>
+
+        <!-- Secondaire 3 -->
+        <div class="col-md-3 mb-3">
+          <img src="{% static 'img/top-view-man-using-his-laptop.jpg' %}" class="img-fluid rounded shadow" alt="Secondaire 3">
+          <p class="mt-2">Secondaire 3</p>
+        </div>
+
+        <!-- Secondaire 4 -->
+        <div class="col-md-3 mb-3">
+          <img src="{% static 'img/3d-illustration-academic-hat-with-golden-tassel.jpg' %}" class="img-fluid rounded shadow" alt="Secondaire 4">
+          <p class="mt-2">Secondaire 4</p>
+        </div>
+
+
+  </div>
+</div>
+{% endblock %}

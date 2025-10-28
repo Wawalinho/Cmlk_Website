@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container text-center mt-5">
+  <h2 class="text-success">Votre demande a été envoyée avec succès</h2>
+  <p>Un e-mail de confirmation vous a été envoyé. Merci pour votre confiance.</p>
+  <a href="{% url 'accueil' %}" class="btn btn-primary mt-3">Retour à l'accueil</a>
+</div>
+{% endblock %}

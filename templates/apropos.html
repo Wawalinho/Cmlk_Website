@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}À propos - Collège Martin Luther King{% endblock %}
+
+{% block content %}
+
+<!-- Section Hero -->
+<section class="py-5 text-white text-center" style="background: url('{% static 'img/apropos-bg.jpg' %}') no-repeat center center/cover;">
+  <div class="container">
+    <h1 class="display-4 fw-bold">À propos du Collège Martin Luther King</h1>
+    <p class="lead">Fondé en 1968 par le regretté Me Roland PROPHETE</p>
+  </div>
+</section>
+
+<!-- Section Historique -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <img src="{% static 'img/histoire.jpg' %}" class="img-fluid rounded shadow" alt="Historique du collège">
+      </div>
+      <div class="col-lg-6">
+        <h2>Notre histoire</h2>
+        <p>
+          Fondé en 1968, le Collège Martin Luther King est bien plus qu’un établissement scolaire : 
+          c’est un lieu de formation humaine, intellectuelle et morale. Inspiré par la pensée du 
+          Dr Martin Luther King Jr., il incarne une éducation enracinée dans la dignité humaine, 
+          la justice, la non-violence et la transformation sociale.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section Philosophie -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Philosophie éducative</h2>
+    <p class="text-center mb-5"><em>« Être ferme et bon »</em> : une approche qui allie rigueur et bienveillance.</p>
+    <div class="row text-center">
+      <div class="col-md-4">
+        <div class="p-4 shadow-sm rounded bg-light h-100">
+          <h5>Non-violence</h5>
+          <p>La non-violence comme principe éducatif.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-4 shadow-sm rounded bg-light h-100">
+          <h5>Dignité humaine</h5>
+          <p>Le respect et la valorisation de chaque personne.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-4 shadow-sm rounded bg-light h-100">
+          <h5>Engagement citoyen</h5>
+          <p>Former des citoyens responsables et solidaires.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section Mission -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-4">Notre mission</h2>
+    <ul class="list-group list-group-flush shadow-sm">
+      <li class="list-group-item">Offrir une éducation inclusive et valorisante.</li>
+      <li class="list-group-item">Former des citoyens conscients, responsables et solidaires.</li>
+      <li class="list-group-item">Intégrer les valeurs universelles dans le contexte haïtien.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Section Devise et Valeurs -->
+<section class="py-5 text-white" style="background-color: #2c3e50;">
+  <div class="container">
+    <h2 class="text-center mb-4">Notre devise</h2>
+    <blockquote class="blockquote text-center">
+      <p class="fs-3">« S’instruire pour grandir »</p>
+    </blockquote>
+
+    <div class="row mt-5">
+      <div class="col-md-4">
+        <h5>S’instruire</h5>
+        <p>Acquérir des savoirs, penser, discerner et dialoguer. S’ouvrir au monde, aux sciences et aux arts.</p>
+      </div>
+      <div class="col-md-4">
+        <h5>Grandir en humanité</h5>
+        <p>Devenir plus juste, plus conscient et plus solidaire.</p>
+      </div>
+      <div class="col-md-4">
+        <h5>Grandir en dignité</h5>
+        <p>Respecter la valeur des autres et refuser toute forme de déshumanisation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

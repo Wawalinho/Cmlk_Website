@@ -22,24 +22,19 @@ def actualites(request):
 def admission(request):
     return render(request, 'admission.html')
 
-from django.shortcuts import render, redirect
-from django.core.mail import EmailMessage
-from django.contrib import messages
-from .forms import AdmissionForm
-
 def admission_formulaire(request):
     if request.method == 'POST':
         form = AdmissionForm(request.POST, request.FILES)
         if form.is_valid():
             admission = form.save()
 
-            # --- Récupération des données principales ---
+            # --- Récupération des données ---
             nom = admission.nom
             email_user = admission.email
             niveau = admission.niveau_formation
             niveau_etude = admission.niveau_etude
 
-            # --- Préparation du message pour le secrétariat ---
+            # --- Contenu des emails ---
             subject_admin = f"Nouvelle demande d’admission - {nom}"
             message_admin = (
                 f"Nom de l’élève : {nom}\n"
@@ -49,52 +44,50 @@ def admission_formulaire(request):
                 f"Une nouvelle demande d’admission vient d’être soumise via le site web."
             )
 
+            subject_user = "Confirmation de réception de votre demande d’admission"
+            message_user = (
+                f"Bonjour {nom},\n\n"
+                "Nous avons bien reçu votre demande d’admission au Collège Martin Luther King.\n"
+                "Notre secrétariat va examiner votre dossier et vous recevrez une réponse officielle sous peu.\n\n"
+                "Merci de votre confiance.\n\n"
+                "— Le secrétariat du Collège Martin Luther King"
+            )
+
             try:
-                # --- Envoi du mail au secrétariat ---
+                # --- Envoi des emails ---
                 send_mail(
-                    subject_admin,
-                    message_admin,
-                    settings.DEFAULT_FROM_EMAIL,  # doit être défini dans settings.py
-                    ['secretariat-cmlk@gmail.com'],
-                    fail_silently=False,
-                )
-
-                # --- Message de confirmation à l’utilisateur ---
-                subject_user = "Confirmation de réception de votre demande d’admission"
-                message_user = (
-                    f"Bonjour {nom},\n\n"
-                    "Nous avons bien reçu votre demande d’admission au Collège Martin Luther King.\n"
-                    "Notre secrétariat va examiner votre dossier et vous recevrez une réponse officielle sous peu.\n\n"
-                    "Merci de votre confiance.\n\n"
-                    "— Le secrétariat du Collège Martin Luther King"
-                )
-
-                send_mail(
-                    subject_user,
-                    message_user,
+                    subject_admin, message_admin,
                     settings.DEFAULT_FROM_EMAIL,
-                    [email_user],
-                    fail_silently=False,
+                    ['secretariat-cmlk@gmail.com'], fail_silently=False,
+                )
+                send_mail(
+                    subject_user, message_user,
+                    settings.DEFAULT_FROM_EMAIL,
+                    [email_user], fail_silently=False,
                 )
 
-                messages.success(request, "Votre demande a été soumise avec succès ! Vous recevrez un email de confirmation.")
-                return redirect('admission_formulaire')
+                # --- Redirection vers la page de confirmation ---
+                return redirect('admission_confirmation')
 
             except Exception as e:
-                messages.error(request, f"Erreur lors de l’envoi de l’email : {e}")
+                # --- Redirection vers la page d’erreur ---
+                return redirect('admission_erreur')
+
         else:
-            messages.error(request, "Veuillez corriger les erreurs dans le formulaire.")
+            # Formulaire invalide : retour au formulaire
+            return render(request, 'admission_formulaire.html', {'form': form})
     else:
         form = AdmissionForm()
 
     return render(request, 'admission_formulaire.html', {'form': form})
 
-def admission_success(request):
-    return render(request, 'admission_success.html')
 
-def admission_error(request):
-    return render(request, 'admission_error.html')
+def admission_confirmation(request):
+    return render(request, 'admission_confirmation.html')
 
+
+def admission_erreur(request):
+    return render(request, 'admission_erreur.html')
 
             
 def contact(request):

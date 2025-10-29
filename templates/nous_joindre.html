@@ -1,116 +1,150 @@
 {% extends "base.html" %}
-{% load static %}
-{% block title %} Nous joindre {% endblock %}
-
+{% block title %}Nous Joindre{% endblock %}
 {% block content %}
 
-{% load static %}
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Services - CMLK</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      background-color: #fff;
-      color: #000;
-      font-family: 'Segoe UI', sans-serif;
-    }
-    .accordion-button::after {
-      filter: invert(64%) sepia(33%) saturate(266%) hue-rotate(49deg) brightness(97%) contrast(87%);
-    }
-    .accordion-button:not(.collapsed) {
-      color: #669966;
-      background-color: #f8f9fa;
-      box-shadow: none;
-    }
-    .icon-btn {
-      background-color: #8bc34a;
-      color: white;
-      border-radius: 50%;
-      width: 35px;
-      height: 35px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-    }
-    a.custom-link {
-      text-decoration: none;
-      font-weight: 600;
-      color: #000;
-    }
-    a.custom-link:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
-
-<body class="p-4">
-  <div class="container">
-    <div class="row">
-      <!-- Partie gauche -->
-      <div class="col-md-6 mb-4">
-        <h4 class="fw-bold">Joindre les services du CMLK</h4>
-        <p>Route nationale #1, Mon Repos Village<br>
-        Plaine du nord (Haïti)<br>
+<div class="container py-5">
+  <div class="row">
+    <!-- Partie gauche -->
+    <div class="col-md-6 mb-4">
+      <h4 class="fw-bold mb-3">Joindre les services du CMLK</h4>
+      <p>
+        Route nationale #1, Mon Repos Village<br>
+        Plaine du Nord (Haïti)<br>
         HT 1220<br>
+        <strong>Téléphones :</strong><br>
         (509) 2260-3153<br>
         (509) 3629-4849<br>
-        (509) 3243-7333</p>
+        (509) 3243-7333
+      </p>
 
-        <p><a href="#" class="custom-link"><span class="icon-btn me-2">📘</span>Appeler</a></p>
+      <p>
+        <a href="tel:+50922603153" class="btn btn-outline-primary btn-sm me-2">📞 Appeler</a>
+        <a href="mailto:directiongenerale@cmlk.edu.ht" class="btn btn-outline-success btn-sm">✉️ Envoyer un email</a>
+      </p>
 
-        <p class="mt-4">
-          Si vous êtes <strong>victime</strong>, <strong>témoin</strong> ou désirez <strong>accompagner</strong> un proche aux prises
-          avec une situation de <strong>violence à caractère sexuel</strong>, de <strong>harcèlement</strong>,
-          de <strong>violence</strong>, ou toute autre <strong>conduite vexatoire</strong>, vous pouvez vous adresser
-          <strong>en toute confidentialité</strong> au
-          <a href="#" class="btn btn-dark mt-2">⚽ Bureau de prévention et d’intervention</a>
+      <div class="mt-4">
+        <p>
+          Si vous êtes <strong>victime</strong>, <strong>témoin</strong> ou désirez <strong>accompagner</strong> un proche
+          aux prises avec une situation de <strong>violence à caractère sexuel</strong>, de <strong>harcèlement</strong>,
+          de <strong>violence</strong> ou toute autre <strong>conduite vexatoire</strong>, vous pouvez vous adresser
+          <strong>en toute confidentialité</strong> au :
         </p>
+        <a href="mailto:bse@cmlk.edu.ht" class="btn btn-dark mt-2">
+          ⚽ Bureau des services des etudiants (bse@cmlk.edu.ht)
+        </a>
       </div>
+    </div>
 
-      <!-- Partie droite -->
-      <div class="col-md-6">
-        <h5 class="fw-bold mb-3">Pour toutes questions concernant :</h5>
+    <!-- Partie droite -->
+    <div class="col-md-6">
+      <h5 class="fw-bold mb-3">Pour toutes questions concernant :</h5>
 
-        <div class="accordion" id="accordionExample">
-  {% for titre in categories %}
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-        data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="false">
-        {{ titre }}
-      </button>
-    </h2>
-    <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse"
-         data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        Contenu détaillé à venir pour <strong>{{ titre }}</strong>.
+      <div class="accordion" id="accordionExample">
+        <!-- Programmes d'étude -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+              📘 Programmes d’étude
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              Pour toute question concernant les programmes d’étude, veuillez écrire à :<br>
+              <a href="mailto:directionetude@cmlk.edu.ht" class="fw-bold text-decoration-none">
+                directionetude@cmlk.edu.ht
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admission et inscription -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              🧾 Admission et inscription
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              Pour toute question ou dossier relatif à l’admission ou à l’inscription, contactez :<br>
+              <a href="mailto:registraire@cmlk.edu.ht" class="fw-bold text-decoration-none">
+                registraire@cmlk.edu.ht
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Emplois -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              💼 Emplois
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              Pour tout dépôt de candidature ou renseignement sur les offres d’emploi, veuillez écrire à :<br>
+              <a href="mailto:rh@cmlk.edu.ht" class="fw-bold text-decoration-none">
+                rh@cmlk.edu.ht
+              </a><br>
+              Ce compte reçoit les dossiers des candidats pour un poste au CMLK.
+            </div>
+          </div>
+        </div>
+
+        <!-- Services des étudiants -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingFour">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              🎓 Services des étudiants
+            </button>
+          </h2>
+          <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              Pour toute demande, plainte, suggestion ou communication avec les services étudiants :<br>
+              <a href="mailto:bse@cmlk.edu.ht" class="fw-bold text-decoration-none">
+                bse@cmlk.edu.ht
+              </a><br>
+              Ce compte est valide pour les plaintes ou suggestions de la part des élèves, enseignants ou direction.
+            </div>
+          </div>
+        </div>
+
+        <!-- Informations générales -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingFive">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+              ℹ️ Informations générales
+            </button>
+          </h2>
+          <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              Pour toute autre information générale, veuillez contacter :<br>
+              <a href="mailto:directiongenerale@cmlk.edu.ht" class="fw-bold text-decoration-none">
+                directiongenerale@cmlk.edu.ht
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  {% endfor %}
 </div>
-      </div>
-    </div>
-  </div>
 
-  {% comment %} <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> {% endcomment %}
-  <script>
-        document.querySelectorAll('.accordion-button').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.accordion-button').forEach(b => {
-                if (b !== btn) b.classList.add('collapsed');
-                });
-            });
-        });
-
-  </script>
-
-
-</body>
-</html>
-
+<script>
+  // Fermer les autres sections quand une est ouverte
+  document.querySelectorAll('.accordion-button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.accordion-button').forEach(b => {
+        if (b !== btn) b.classList.add('collapsed');
+      });
+    });
+  });
+</script>
 
 {% endblock %}

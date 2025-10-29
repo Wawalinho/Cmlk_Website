@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Confirmation d’admission{% endblock %}
+
+{% block content %}
+<div class="container text-center py-5">
+    <div class="alert alert-success shadow-sm p-5 rounded-4">
+        <h2 class="mb-3">Demande soumise avec succès !</h2>
+        <p>Votre demande d’admission a bien été reçue. Vous recevrez un email de confirmation sous peu.</p>
+        <a href="{% url 'home' %}" class="btn btn-primary mt-3">Retour à l’accueil</a>
+    </div>
+</div>
+{% endblock %}

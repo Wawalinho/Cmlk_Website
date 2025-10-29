@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Erreur lors de l’envoi{% endblock %}
+
+{% block content %}
+<div class="container text-center py-5">
+    <div class="alert alert-danger shadow-sm p-5 rounded-4">
+        <h2 class="mb-3">Erreur lors de l’envoi de votre demande</h2>
+        <p>Une erreur est survenue pendant l’envoi de votre demande d’admission.</p>
+        <p>Veuillez réessayer plus tard ou contacter le secrétariat du collège.</p>
+        <a href="{% url 'admission_formulaire' %}" class="btn btn-secondary mt-3">Réessayer</a>
+    </div>
+</div>
+{% endblock %}

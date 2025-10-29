@@ -9,8 +9,8 @@ urlpatterns = [
     path('actualites/', views.actualites, name='actualites'),
     path('admission/', views.admission, name='admission'),
     path('admission/formulaire/', views.admission_formulaire, name='admission_formulaire'),
-    path('admission/formulaire/success/', views.admission_success, name='admission_success'),
-    path('admission/formulaire/error/', views.admission_error, name='admission_error'),
+    path('admission/formulaire/confirmation/', views.admission_confirmation, name='admission_confirmation'),
+    path('admission/formulaire/erreur/', views.admission_erreur, name='admission_erreur'),
     path('contact/', views.contact, name='contact'),
     path('nous-joindre/', views.nous_joindre, name='nous-joindre'),
 

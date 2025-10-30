@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: cmlk
+    env: python
+    plan: free
+    region: ohio
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py collectstatic --noinput
+      python manage.py migrate
+    startCommand: gunicorn cmlk.wsgi
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: cmlk.settings
+      - key: PYTHON_VERSION
+        value: 3.11
+      - key: DATABASE_URL
+        fromDatabase:
+          name: cmlk_db 
+          property: connectionString
+
+databases:
+  - name: cmlk_db
+    plan: free
+    region: ohio

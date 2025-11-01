@@ -4,6 +4,7 @@ from pathlib import Path
 import dj_database_url
 import os
 from decouple import config
+from supabase import create_client
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -114,6 +115,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Whitenoise pour servir les fichiers statiques
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+
+# --- Supabase configuration ---
+SUPABASE_URL = config('SUPABASE_URL')
+SUPABASE_KEY = config('SUPABASE_KEY')
+SUPABASE_BUCKET = config('SUPABASE_BUCKET')
+
+supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 # --- Fichiers médias ---
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

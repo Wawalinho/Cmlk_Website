@@ -1,5 +1,18 @@
 
 from django.db import models
+from django.conf import settings
+
+
+def upload_to_supabase(file):
+    # Lire le contenu du fichier
+    file_content = file.read()
+    file_name = file.name
+    # Envoyer sur Supabase
+    res = settings.supabase.storage.from_(settings.SUPABASE_BUCKET).upload(file_name, file_content)
+    if res.status_code == 200:
+        return f"{settings.SUPABASE_URL}/storage/v1/object/public/{settings.SUPABASE_BUCKET}/{file_name}"
+    else:
+        return None
 
 class Actualite(models.Model):
 
